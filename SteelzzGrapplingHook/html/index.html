@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Grappling Hook Sounds</title>
+    <script>
+        var audioPlayers = {};
+
+        window.addEventListener('message', function(event) {
+            if (event.data.type === 'playSound') {
+                var sound = event.data.sound;
+                var volume = event.data.volume || 1.0;
+
+                if (!audioPlayers[sound]) {
+                    audioPlayers[sound] = new Audio('sounds/' + sound + '.mp3');
+                }
+
+                audioPlayers[sound].volume = volume;
+                audioPlayers[sound].currentTime = 0;
+                audioPlayers[sound].play();
+            }
+        });
+    </script>
+</head>
+<body>
+</body>
+</html> 
